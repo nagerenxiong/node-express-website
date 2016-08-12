@@ -1,1 +1,2 @@
-用node-express写的一个网站，mysql数据库在db文件夹下，只供参考！
+鐢╪ode-express鍐欑殑涓�涓綉绔欙紝mysql鏁版嵁搴撳湪db鏂囦欢澶逛笅
+鐢╪ode-express鍐欑殑涓�涓綉绔欙紝mysql鏁版嵁搴撳湪db鏂囦欢澶逛笅
