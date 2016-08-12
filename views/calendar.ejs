@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>金十数据_财经日历</title>
+<link rel="stylesheet" href="/stylesheets/reset.css">
+<link rel="stylesheet" href="/stylesheets/calendar.css">
+<script src="javascripts/jquery-1.9.1.min.js"></script>
+<script src="javascripts/all.js"></script>
+<script src="laydate/laydate.js"></script>
+
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<h1 class="tp_left">
+    	<a href="javascript:;"><img src="images/logo.png" width="210" height="47"></a>
+    </h1>
+    <div class="tp_right">
+    	<input class="tp_enter" placeholder="请输入关键词">
+        <a class="tp_search" href="javascript:;"></a>
+    </div>
+</div>
+<!--nav-->
+<div class="nav">
+	<ul>
+    	<li><a href="/">首页</a></li>
+        <li><a href="/strategy">独家策略</a></li>
+        <li ><a href="/infor">财经资讯</a></li>
+        <li class="nv_bg2"><a href="/calendar">财经日历</a></li>
+        <li><a href="/market">实时行情</a></li>
+    </ul>
+</div>
+<!--calendar-->
+<div class="calendar">
+	<dl>
+    	<dt>
+        	<span class="cr_topic">财经日历</span>
+            <input class="laydate-icon" onclick='laydate({choose: function(dates){ updateDateEvent(dates) }})' value="<%=currentDate %>" style="text-align:center;border-color:#c82126;">
+        </dt>
+        <dd>
+            <span class="cr_col" style="line-height:64px;"  onclick="laydate()">日期</span>
+            <div class="cr_desc">
+
+                <a class="cr_pre" onclick="pre_week()"><上周</a>
+                <ul class="cr_day list_dates">
+                    <li>
+                        <p>星期一</p>
+                        <span id="weeks_item_0">2014-12-15</span>
+                    </li>
+                    <li>
+                        <p>星期二</p>
+                        <span id="weeks_item_1">2014-12-16</span>
+                    </li>
+                    <li>
+                        <p>星期三</p>
+                        <span id="weeks_item_2">2014-12-15</span>
+                    </li>
+                    <li>
+                        <p>星期四</p>
+                        <span id="weeks_item_3">2014-12-15</span>
+                    </li>
+                    <li>
+                        <p>星期五</p>
+                        <span id="weeks_item_4">2014-12-15</span>
+                    </li>
+                    <li>
+                        <p>星期六</p>
+                        <span id="weeks_item_5">2014-12-15</span>
+                    </li>
+                    <li>
+                        <p>星期日</p>
+                        <span id="weeks_item_6">2014-12-15</span>
+                    </li>
+                </ul>
+                    <a class="cr_next" onclick="next_week()">下周></a>
+
+            </div>
+        </dd>
+        <dd>
+        	<span class="cr_col">地区</span>
+			<ul class="cr_country">
+            	<a  class="cr_all" href="javascript:;" >全部</a>
+             	<li class="cr_meig"><a href="javascript:;">美国</a></li>
+            	<li class="cr_zhongg"><a href="javascript:;">中国</a></li>
+             	<li class="cr_oum"><a href="javascript:;">欧元区</a></li>
+             	<li class="cr_rib"><a href="javascript:;">日本</a></li>
+            	<li class="cr_adly"><a href="javascript:;">澳大利亚</a></li>
+            	<li class="cr_yingg"><a href="javascript:;">英国</a></li>
+             	<li class="cr_jnd"><a href="javascript:;">加拿大</a></li>
+            	<li class="cr_ruis"><a href="javascript:;">瑞士</a></li>
+              <li class="cr_check"  style="display:none"><a href="javascript:;">新西兰</a></li>
+              <li class="cr_check" style="display:none"><a href="javascript:;">台湾</a></li>
+              <li class="cr_check" style="display:none"><a href="javascript:;">西班牙</a></li>
+              <li class="cr_check" style="display:none"><a href="javascript:;">香港</a></li>
+              <li class="cr_check" style="display:none"><a href="javascript:;">爱尔兰</a></li>
+              <li class="cr_check" style="display:none"><a href="javascript:;">意大利</a></li>
+            </ul>
+        </dd>
+        <dd>
+        	<span class="cr_col">种类</span>
+			<ul class="cr_category">
+            	<a class="cr_all" href="javascript:;" >全部</a>
+             	<li><a href="javascript:;">贵金属</a></li>
+            	<li><a href="javascript:;">原油</a></li>
+             	<li><a href="javascript:;">外汇</a></li>
+            </ul>
+        </dd>
+        <dd>
+        	<span class="cr_col">重要性</span>
+			<ul class="cr_degree">
+            	<a href="javascript:;"  class="cr_all">全部</a>
+             	<li><a href="javascript:;">高</a></li>
+            	<li><a href="javascript:;">中</a></li>
+             	<li><a href="javascript:;">低</a></li>
+            </ul>
+        </dd>
+    </dl>
+</div>
+<div class="data">
+	<div class="da_form">
+    	<h1><span class="curDate"><%=currentDate%></span> 经济数据一览</h1>
+        <table border="0"  cellpadding="0" cellspacing="0">
+        	<tr>
+            	<th>时间</th>
+                <th>国家（地区）</th>
+                <th class="da_data">指标名称</th>
+            	<th>重要性</th>
+                <th>前值</th>
+                <th>预测值</th>
+                <th>公布值</th>
+                <th class="da_data">多空判断</th>
+            </tr>
+             <% for (var i = 0; i < data.length; i++) { %>
+                <tr>
+                <td><%=data[i]["PredictTime"]%></td>
+                <td class="da_logo" data-c="<%=data[i]["State"]%>">
+                    <% if(data[i]["State"]=="美国"){ %>
+                    <img src="images/cr_cy01.jpg" width="21" height="14">
+                    <%} else if(data[i]["State"]=="中国") { %>
+                    <img src="images/cr_cy02.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="欧盟") { %>
+                    <img src="images/cr_cy03.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="日本") { %>
+                    <img src="images/cr_cy04.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="澳大利亚") { %>
+                    <img src="images/cr_cy05.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="英国") { %>
+                    <img src="images/cr_cy06.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="加拿大") { %>
+                    <img src="images/cr_cy07.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="瑞士") { %>
+                    <img src="images/cr_cy08.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="台湾") { %>
+                    <img src="images/cr_cy09.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="香港") { %>
+                    <img src="images/cr_cy09.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="新西兰") { %>
+                    <img src="images/cr_cy09.jpg" width="21" height="14">
+                     <%} else if(data[i]["State"]=="西班牙") { %>
+                    <img src="images/xby.png" width="21" height="14">
+                     <%} else if(data[i]["State"]=="韩国") { %>
+                    <img src="images/hg.png" width="21" height="14">
+                     <%} else if(data[i]["State"]=="意大利") { %>
+                    <img src="images/ydl.png" width="21" height="14">
+                     <%} else if(data[i]["State"]=="法国") { %>
+                    <img src="images/fg.png" width="21" height="14">
+                     <%} else if(data[i]["State"]=="德国") { %>
+                    <img src="images/dg.png" width="21" height="14">
+                      <%} else if(data[i]["State"]=="希腊") { %>
+                    <img src="images/xl.png" width="21" height="14">
+                     <%} else if(data[i]["State"]=="欧元区") { %>
+                    <img src="images/oyq.png" width="21" height="14">
+                    <% } %>
+                </td>
+                <td>
+                    <%  for(var j=i;j<data.length;j++){ %>
+                      <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %>
+                          <span title="<%=data[j]["NFI"]%>"><%=data[j]["State"]%><%=data[j]["NFI"]%></span>
+                      <% } %>
+                    <% } %>
+                </td>
+                <td class="da_import" >
+                <%  for(var j=i;j<data.length;j++){ %>
+                      <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %>
+                    <span class="da_mid importSpan" data-i="<%=data[j]["Nature"]%>">
+                    <% if(data[j]["Nature"]=="高"){ %>
+                    <img src="images/ix_degree2.jpg" width="28" height="22">
+                    <%} else if(data[j]["Nature"]=="中") { %>
+                    <img src="images/ix_degree.jpg" width="28" height="22">
+                     <%} else if(data[j]["Nature"]=="低") { %>
+                      <img src="images/ix_degree3.jpg" width="28" height="22">
+                     <% } %>
+                    </span>
+                   <% } %>
+                    <% } %>
+                </td>
+                <td><%  for(var j=i;j<data.length;j++){ %>
+                      <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %><span><%=data[j]["Before"]%></span><%}} %></td>
+                <td><%  for(var j=i;j<data.length;j++){ %>
+                  <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %><span><%=data[j]["Forecast"]%></span><%}}%></td>
+                <td><%  for(var j=i;j<data.length;j++){ %>
+                  <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %><span><%=data[j]["Reality"]%></span><%}}%></td>
+                <td class="da_judge">
+                <%  for(var j=i;j<data.length;j++){ %>
+                      <% if(data[i]["PredictTime"]==data[j]["PredictTime"]&&data[i]["State"]==data[j]["State"]){ %>
+                    <% if(data[j]["Effect"]=="||") { %>
+                    <span  style="font-size: 12px;color:#FD9525">影响较小</span>
+                    <%  } %>
+                    <% var index=data[j]["Effect"].indexOf("|");var ld=data[j]["Effect"].substring(0,index).replace(/\|/g,"");var lk=data[j]["Effect"].substring(index).replace(/\|/g,""); %>
+                        <% if(ld!=""&&ld.length!=0){ %>
+                           <% var ldArray=ld.split(" ");var lkArray=lk.split(" ") %>
+                            <span  style="font-size: 12px;">
+                            <em style="color:red"> 利多:
+                            <% for(var k=0;k<ldArray.length;k++) {%>
+                              <b data-type="<%=ldArray[k] %>" style="color:red"><%=ldArray[k] %></b>
+                            <% } %>
+                            </em>
+                                <% if(lk!=""&&lk.length!=0) {%>
+                                <em style="color:green">利空:
+                                <% for(var k=0;k<lkArray.length;k++) {%>
+                                <b data-type="<%=lkArray[k] %>" style="color:green"><%=lkArray[k] %></b>
+                                <%} %>
+                                </em>
+                                <% } %>
+                            </span>
+                        <%} else { %>
+                                <% var lkArray=lk.split(" ") %>
+                                <% if(lk!=""&&lk.length!=0) {%>
+                                <span  style="font-size: 12px;"><em style="color:green">利空:
+                                <% for(var k=0;k<lkArray.length;k++) {%>
+                                   <% if(lkArray[k]!=""){ %>
+                                  <b style="color:green" data-type="<%=lkArray[k] %>"><%=lkArray[k] %></b>
+                                  <% } %>
+                                <% } %>
+                                </em></span>
+                                 <% } else{ if(data[j]["Effect"]!="||"){ %>
+                               <span></span>
+                                <% } }%>
+                        <% } %>
+                    <% i=j }}%>
+                </td>
+            </tr>
+           <% } %>
+        </table>
+    </div>
+	<div class="da_form">
+    	<h1><span class="curDate"><%=currentDate%></span> 财经大事一览</h1>
+        <table border="0"  cellpadding="0" cellspacing="0">
+        	<tr>
+            	<th>时间</th>
+                <th>国家（地区）</th>
+                <th class="da_data da_data3">地点</th>
+            	<th>重要性</th>
+                <th class="da_data da_data2">事件</th>
+            </tr>
+            <% if(ImportThings.length>0) {%>
+                  <% for (var i = 0; i < ImportThings.length; i++) { %>
+                  <tr>
+                      <td><%=ImportThings[i]["PredictTime"] %></td>
+                      <td><%=ImportThings[i]["State"]%></td>
+                      <td>
+                          <span title="--">--</span>
+                      </td>
+                      <td class="da_import">
+                           <span class="da_mid">
+                              <% if(ImportThings[i]["Nature"]=="高"){ %>
+                              <img src="images/ix_degree2.jpg"  width="28" height="22">
+                              <%} else if(ImportThings[i]["Nature"]=="中") { %>
+                              <img src="images/ix_degree.jpg"  width="28" height="22">
+                              <%} else if(ImportThings[i]["Nature"]=="低") { %>
+                              <img src="images/ix_degree3.jpg"  width="28" height="22">
+                              <% } %></span>
+                      </td>
+                      <td><%=ImportThings[i]["NFI"]%></td>
+                  </tr>
+                  <% } %>
+            <% }else{%>
+                 <tr><td colspan="5">今天无重要大事预告公布！</td> </tr>
+            <% } %>
+        </table>
+    </div>
+	<div class="da_form">
+    	<h1><span class="curDate"><%=currentDate%></span>  假期预告一览</h1>
+        <table border="0"  cellpadding="0" cellspacing="0">
+        	<tr>
+            	<th>时间</th>
+                <th>国家（地区）</th>
+                <th class="da_data da_data3">地点</th>
+            	<th>重要性</th>
+                <th class="da_data da_data2">事件</th>
+            </tr>
+             <% if(HolidayNotices.length>0) {%>
+                  <% for (var i = 0; i < HolidayNotices.length; i++) { %>
+                  <tr>
+                      <td><%=HolidayNotices[i]["PredictTime"] %></td>
+                      <td><%=HolidayNotices[i]["State"]%></td>
+                      <td>
+                          <span title="--">--</span>
+                      </td>
+                      <td class="da_import">
+                          <span class="da_mid" >
+                              <% if(HolidayNotices[i]["Nature"]=="高"){ %>
+                              <img src="images/ix_degree2.jpg"  width="28" height="22">
+                              <%} else if(HolidayNotices[i]["Nature"]=="中") { %>
+                              <img src="images/ix_degree.jpg"  width="28" height="22">
+                              <%} else if(HolidayNotices[i]["Nature"]=="低") { %>
+                              <img src="images/ix_degree3.jpg"  width="28" height="22">
+                              <% } %></span>
+                      </td>
+                      <td><%=HolidayNotices[i]["NFI"]%></td>
+                  </tr>
+                  <% } %>
+            <% }else{%>
+                 <tr><td colspan="5">今天无重要节日预告公布！</td> </tr>
+            <% } %>
+        </table>
+    </div>
+</div>
+<div class="cr_state">
+	<dl>
+    	<dt><span>免责声明</span></dt>
+        <dd>1、第一黄金网财经日历的内容，事一直各国政府原定公布的经济指标、财经事件及时间表。</dd>
+        <dd>2、第一黄金网财经日历的内容，事一直各国政府原定公布的经济指标、财经事件及时间表。</dd>
+        <dd>3、第一黄金网财经日历的内容，事一直各国政府原定公布的经济指标、财经事件及时间表。</dd>
+        <dd>4、第一黄金网财经日历的内容，事一直各国政府原定公布的经济指标、财经事件及时间表。</dd>
+    </dl>
+
+
+</div>
+<hr style="height:1px;background-color:#dcdcdc;margin-bottom:24px;">
+<!--footer-->
+<div class="footer">
+	<ul>
+    	<li><a href="javascript:;">关于我们</a></li>
+    	<li><a href="javascript:;">联系我们</a></li>
+    	<li><a href="javascript:;">免责声明</a></li>
+    	<li><a href="javascript:;">意见反馈</a></li>
+    	<li><a href="javascript:;">网站地图</a></li>
+    </ul>
+    <p>Copyright &copy; 2001-2015 金十数据 DYHJW.com All Rights Reserved | 沪ICP备15014470号- 12 </p>
+    <span class="fr_safe"></span>
+</div>
+<script src="javascripts/calendar.js"></script>
+</body>
+</html>

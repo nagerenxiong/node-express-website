@@ -1,0 +1,86 @@
+@charset "utf-8";
+/*strategy*/
+.calendar{width:1000px;margin:0 auto;}
+.calendar dl dt{border-bottom:solid 2px #c82126;margin-bottom:14px;padding-bottom:2px;}
+.cr_topic{color:#c82126;padding-left:20px;background:url(../images/sy_topic.jpg) no-repeat left center;line-height:32px;font-weight:bold;font-size:20px;}
+
+.calendar dl{border-bottom:solid 1px #ddd;}
+.calendar dl dd{border:solid #ddd;border-width:1px 1px 0;overflow:hidden;}
+.calendar dl dd span{font-size:14px;}
+.cr_col{float:left;border-right:solid 1px #ddd;width:93px;text-align:center;line-height:40px;color:#666;}
+
+.cr_desc{float:right;overflow:hidden;width:900px;}
+.cr_desc a{float:left;width:10%;text-align:center;line-height:32px;background-color:#e8f4ff;margin-top:16px;border-radius:4px;}
+.cr_desc a:hover{color:#c82126;}
+.cr_desc ul{float:left;width:79.5%;text-align:center;}
+.cr_day{overflow:hidden;}
+.cr_day li{float:left;width:12%;margin:0 1.1%;background-color:#eee;margin-top:8px;}
+.cr_day li p,.cr_day li span{line-height:24px;}
+.cr_day li p{color:#666;font-weight:bold;}
+.cr_day li span{color:#999;font-size:14px;}
+.cr_day li:hover p,.cr_day li:hover span{color:#c82126;cursor:pointer;}
+.cr_day .cr_date p,.cr_day .cr_date span{color:#c82126;}
+
+.cr_country{overflow:hidden;}
+.cr_country li{float:left;margin:0 10px;padding-left:15px;background:url(../images/cr_nc.jpg) no-repeat left 8px;margin-top:8px;cursor:pointer;}
+.cr_country li a{font-size:14px;padding-left:25px;background:url(../images/cr_cy01.jpg) no-repeat left center;}
+
+.cr_country .cr_check,.cr_category .cr_check,.cr_degree .cr_check{background-image:url(../images/cr_ck.jpg);}
+.cr_all{float:left;margin:0 10px;padding-left:15px;background:url(../images/cr_nc.jpg) no-repeat left 6px;margin-top:10px;font-size:14px;}
+.cr_country .cr_zhongg a{background-image:url(../images/cr_cy02.jpg);}
+.cr_country .cr_oum a{background-image:url(../images/cr_cy03.jpg);}
+.cr_country .cr_rib a{background-image:url(../images/cr_cy04.jpg);}
+.cr_country .cr_adly a{background-image:url(../images/cr_cy05.jpg);}
+.cr_country .cr_yingg a{background-image:url(../images/cr_cy06.jpg);}
+.cr_country .cr_jnd a{background-image:url(../images/cr_cy07.jpg);}
+.cr_country .cr_ruis a{background-image:url(../images/cr_cy08.jpg);}
+
+.cr_category,.cr_degree{overflow:hidden;}
+.cr_category li,.cr_degree li{float:left;margin:0 10px;padding-left:15px;background:url(../images/cr_nc.jpg) no-repeat left 8px;margin-top:8px;curosor:pointer;}
+.cr_category li a,.cr_degree li a{font-size:14px;}
+/*data*/
+.data{width:1000px;margin:22px auto;}
+.da_form{margin:12px 0;}
+.da_form h1{color:#666;font-size:14px;line-height:30px;}
+.da_form table{width:100%;}
+.da_form table tr{overflow:hidden;}
+.da_form table tr th{font-size:14px;color:#fff;background-color:#999;line-height:32px;width:10%;height:32px;overflow:hidden;}
+.da_form table tr .da_data{width:19%;}
+.da_form table tr td{text-align:center;border:solid #ddd;border-width:0 1px 1px 0;font-size:14px;line-height:32px;}
+.da_form table tr td:first-child{border-left:solid 1px #ddd;}
+.da_form table tr td span{display:block;border-bottom:solid 1px #ddd;line-height:32px;font-size:14px;height:32px;overflow:hidden;}
+.da_form table tr td span:last-child{border-bottom:none;}
+.da_logo img{margin:0 auto;}
+.da_mid,.da_mid2{height:32px;}
+.da_mid img,.da_mid2 img{margin:0 auto;padding-top:5px;}
+/*da_data2*/
+.da_form table tr .da_data2{width:30%;}
+.da_form table tr .da_data3{width:15%;}
+/*da_data4*/
+.da_data4{width:10%;}
+
+/*cr_state*/
+.cr_state{width:1000px;margin:0 auto;margin-bottom:22px;}
+.cr_state dl dt{border-bottom:solid 1px #ddd;line-height:30px;margin-bottom:10px;}
+.cr_state dl dt span{font-size:14px;}
+.cr_state dl dd{font-size:14px;line-height:24px;}
+.cr_day .cur span,.cr_day .cur p{color: #c82126;}
+.cr_next,.cr_pre{cursor: pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

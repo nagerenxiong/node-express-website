@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;border:0;font-family: "Microsoft YaHei";color:#222;}
+img{display:block;}
+a,span{display:inline-block;}
+a{text-decoration:none;}
+table,th,tr,td,h1,h2,h3,h4,h5,h6,h7{font-weight:normal;font-size:100%;}
+em,i{font-style:normal;}
+li{list-style:none;}
+/*top*/
+.top{width:1000px;margin:0 auto;overflow:hidden;}
+.tp_left{float:left;margin-top:24px;}
+.tp_right{float:right;margin-top:34px;}
+
+.tp_enter,.tp_search{float:left;}
+.tp_enter{width:232px;padding-left:10px;border:solid #b00c14;border-width:1px 0 1px 1px;line-height:32px;font-size:12px;height:32px;}
+.tp_search{width:56px;height:34px;background:url(../images/tp_search.jpg) no-repeat center;} 
+/*nav*/
+.nav{background:url(../images/nv_bg.jpg) repeat-x center center;margin:20px 0;}
+.nav ul{width:1000px;margin:0 auto;overflow:hidden;}
+.nav ul li{width:20%;float:left;text-align:center;}
+.nav ul li:hover{background:url(../images/nv_bg2.jpg) repeat-x center center;}
+.nav ul li a{line-height:38px;display:block;color:#fff;}
+
+.nv_bg2{background:url(../images/nv_bg2.jpg) repeat-x center center;}
+/*footer*/
+.footer{text-align:center;margin-bottom:35px;}
+.footer ul{text-align:center;}
+.footer ul li{display:inline-block;font-size:14px;border-right:solid 1px #becde4;}
+.footer ul li:last-child{border:none;}
+.footer ul li a{padding:0 20px;}
+.footer ul li a:hover{color:#c82126;text-decoration:underline;}
+.footer p{text-align:center;font-size:14px;margin:12px 0 18px 0;}
+.fr_safe{width:104px;height:36px;background:url(../images/fr_safety.jpg) no-repeat center;background-size:100%;}
+
+
+

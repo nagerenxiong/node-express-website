@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>写文章</title>
+	<link rel="stylesheet" href="/stylesheets/reset.css">
+	<link rel="stylesheet" href="/stylesheets/admin.css"></head>
+<body>
+	<div class="top">你好,admin</div>
+	<div class="wrap">
+		<div class="left">
+			<a href="/admin">所有文章</a>
+			<a href="/post">写文章</a>
+		</div>
+		<div class="right">
+			<h1>撰写新文章</h1>
+			<div class="cat_box">
+				<label>请选择分类</label>
+				<select name="cat" id="cat" class="postform" style="width:100px;height:25px;">	
+					<option class="level-0" value="1">独家策略</option>
+					<option class="level-1" value="2">财经数据</option>
+				</select>
+			</div>
+			<div class="title_box">
+				<label >请输入标题：</label>
+				<input type="text" id="title" value="<%=article[0]['title']%>"></div>
+			<div class="summary_box">
+				<label >请输入简介：</label>
+				<textarea name="" id="summary" cols="30" rows="5"><%=article[0]['summary']%></textarea>
+			</div>			
+			<!-- 加载编辑器的容器 -->
+			<div style="margin-top:10px;font-size:12px;">
+				请输入内容：
+			</div>
+			<script id="content_box" name="content" type="text/plain"><%-article[0]['content_html']%></script>
+			<div class="submit_box">
+				<a href="javascript:void(0)" class="submit_btn">提交</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/javascripts/jquery-1.9.1.min.js"></script>
+	<!-- 配置文件 -->
+	<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+	<!-- 编辑器源码文件 -->
+	<script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<!-- 实例化编辑器 -->
+	<script type="text/javascript">
+		var ue = UE.getEditor('content_box');
+	    $(".submit_btn").click(function(event) {
+	    	var  content_html=UE.getEditor('content_box').getContent().replace(/"/g,"%$%");
+	    	var title=$("#title").val();
+	    	var summary=$("#summary").val();
+	    	var catId=$("#cat").val();
+	    	if(title=="")
+	    	{
+	    		alert("请输入标题");
+	    		return;
+	    	}
+	    	if(summary=="")
+	    	{
+	    		alert("请输入简介");
+	    		return;
+	    	}
+	    	if(content_html=="")
+	    	{
+	    		alert("请输入内容");
+	    		return;
+	    	}
+	    	$.ajax({
+	    		url: '/post/articlePost',
+	    		type: 'post',
+	    		data: {content_html:content_html,title:title,summary:summary,catId:catId},
+	    	})
+	    	.done(function(d) {
+	    		if(d=="1"){
+	    			alert("修改成功！");
+	    			window.location.href="/admin";
+	    		}
+		    	else
+		    	{
+		    		alert("修改失败！");
+		    	}
+		    	
+	    	})
+	    	.fail(function(d) {
+	    		alert("修改失败！");
+	    	})
+	    	.always(function() {
+	    		console.log("complete");
+	    	});
+	    	
+	    });
+
+	</script>
+</body>
+</html>

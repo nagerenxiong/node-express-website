@@ -1,0 +1,91 @@
+@charset "utf-8";
+/*market*/
+.mt_topic{width:1000px;margin:0 auto;border-bottom:solid 2px #c82126;margin-bottom:14px;}
+.mt_topic span{color:#c82126;padding-left:20px;background:url(../images/sy_topic.jpg) no-repeat left center;line-height:32px;font-weight:bold;font-size:20px;}
+
+.market{width:1000px;margin:0 auto;overflow:hidden;margin-bottom:35px;}
+.mt_left{float:left;width:173px;}
+.mt_color a{color:#c53225;}
+
+.mt_left dt a{display:block;background-color:#c53225;color:#fff;line-height:48px;text-align:center;font-weight:bold;}
+.mt_left dd{position:relative;}
+.mt_left dd{background:url(../images/mt_arrow.png) no-repeat 153px center;position: relative;z-index: 2;}
+.mt_left dd a{display:block;line-height:48px;text-align:center;font-weight:bold;border:solid #e7e7e7;border-width:0 1px 1px 0px;}
+
+.mt_dl{position:relative;float:right;width:810px;}
+.mt_right{width:100%;}
+.mt_right dt{background-color:#eef6ff;}
+.mt_right dt span,.mt_right dd span{font-size:14px;width:10%;overflow:hidden;line-height:38px;text-align:right;}
+.mt_right dd{padding:8px 0 4px;border-bottom:solid 1px #eff0f3;}
+.mt_right dd span{line-height:28px;}
+.mt_right dt span:first-child,.mt_right dd span:first-child{width:12%;text-align:left;}
+.mt_right dd span:first-child{color:#0059ac;}
+
+.mt_bold{font-weight:bold;}
+.mt_bold2{font-weight:bold;color:#c53225;}
+.mt_bold3{font-weight:bold;color:#008533;}
+.mt_bg{background-color:#f54e4e;color:#fff;padding-right:2px;font-weight:bold;}
+.float_box{
+	position: absolute;
+	left: 100%;
+	top:0;
+	display: none;
+	width:100px;
+	border-top: 1px solid #e7e7e7;
+	border-left: 1px solid #e7e7e7;
+	background:#fff;
+}
+.float_box a{
+	color: #333;
+	font-size: 14px;
+}
+.float_box a:hover{
+	color:#c53225;
+}
+.mt_dd dd:hover .float_box{
+	display: block;
+}
+.mt_dl .mt_right dd span.w_ {
+    color: #FFFFFF;
+}
+.mt_right dd span.gr_ {
+    color: #0ea600;
+}
+
+.gbcolor {
+    background: #56a73d none repeat scroll 0 0;
+}
+.rbcolor {
+    background: #f54e4e none repeat scroll 0 0;
+}
+.mt_right dd span.r_ {
+    color: #e33131;
+}
+.mt_right dd span{padding-right: 10px;box-sizing: border-box;}
+.mt_right dd,.mt_right  dt{text-align: center;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

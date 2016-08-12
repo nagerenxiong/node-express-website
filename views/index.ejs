@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>金十数据_首页</title>
+<script src="javascripts/jquery-1.9.1.min.js"></script>
+<script src="javascripts/all.js"></script>
+<link rel="stylesheet" href="/stylesheets/reset.css">
+<link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<h1 class="tp_left">
+    	<a href="javascript:;"><img src="images/logo.png" width="210" height="47"></a>
+    </h1>
+    <div class="tp_right">
+    	<input class="tp_enter" placeholder="请输入关键词">
+        <a class="tp_search" href="javascript:;"></a>
+    </div>
+</div>
+<!--nav-->
+<div class="nav">
+	<ul>
+         <li  class="nv_bg2"><a href="/">首页</a></li>
+        <li><a href="/strategy">独家策略</a></li>
+        <li><a href="/infor">财经资讯</a></li>
+        <li><a href="/calendar">财经日历</a></li>
+        <li><a href="/market">实时行情</a></li>
+    </ul>
+</div>
+<!--index-->
+<a class="ix_banner" href="javascript:;"><img src="images/ix_banner.jpg" width="1000" height="80" title="金十数据" alt="金十数据"></a>
+<div class="index">
+    <div class="ix_left">
+        <h1><span class="ix_topic">金十数据直播</span></h1>
+		<ul class="ix_check">
+             <li class="ix_li1">
+                <span>信息种类:</span>
+                <a href="javascript:;" class="ix_gou">金融</a>
+                <a href="javascript:;" class="ix_gou">石油</a>
+                <a href="javascript:;" class="ix_gou">外汇</a>
+            </li>
+        	<li class="ix_li2">
+            	<span>重要性:</span>
+                <a href="javascript:;" class="ix_gou">高</a>
+                <a href="javascript:;" class="ix_gou">中</a>
+                <a href="javascript:;" class="ix_gou">低</a>
+            </li>
+            <li class="ix_li3">
+            	<span class="ix_desk">桌面通知</span>
+            </li>
+            <li class="ix_li4">
+            	<span class="ix_voice">声音提示</span>
+            </li>
+        </ul>
+        <dl class="ix_column">
+        	<dt>
+            	<span id="time" class="ix_time"><%=time %></span>
+                <span class="ix_date"><%=date %> <%=week %></span>
+            </dt>
+            <% var curDate = new Date();var currentDate = curDate.toLocaleDateString();for(var i=firstData["data"].length-1; i>=0; i--) { %>
+             <% if(firstData["data"][i]["time"].substr(0,10)!=currentDate){%>
+               <dd class="dateClass " ><p><% var dateLast=firstData["data"][i-1]["time"].substr(0,10);var arys1= new Array();arys1=dateLast.split('-'); var ssdate=new Date(arys1[0],parseInt(arys1[1]-1),arys1[2]); var dayIndex=ssdate.getDay();switch (dayIndex) {case 1: dayIndex = '星期一';break; case 2: dayIndex = '星期二';break; case 3: dayIndex = '星期三';break; case 4: dayIndex = '星期四';break; case 5: dayIndex = '星期五';break; case 6: dayIndex = '星期六';break; case 0: dayIndex = '星期天';break; }  %><%=dateLast%> <%=dayIndex%></p></dd>
+             <% currentDate=firstData["data"][i]["time"].substr(0,10) } %>
+             <% if(firstData["data"][i]["type"]==2) { %>
+                <dd data-idg="<%=firstData["data"][i]["id"]%>" data-time="<%=firstData["data"][i]["time"].substr(0,10) %>" data-id="<%=firstData["kxLastid"]%>" class="classTypeTwo">
+                <span ><%=firstData["data"][i]["time"].substr(10,6) %></span>
+                 <div class="ix_txt">
+                       <% if(firstData["data"][i]["state"]=="美国"){ %>
+                        <img src="images/cr_cy01.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="中国"){ %>
+                        <img src="images/cr_cy02.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="欧元区"){ %>
+                        <img src="images/cr_cy03.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="日本"){ %>
+                        <img src="images/cr_cy04.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="澳大利亚"){ %>
+                        <img src="images/cr_cy05.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="加拿大"){ %>
+                        <img src="images/cr_cy07.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="瑞士"){ %>
+                        <img src="images/cr_cy08.jpg" width="42" height="42">
+                        <% } else if(firstData["data"][i]["state"]=="英国"){ %>
+                        <img src="images/cr_cy06.jpg" width="42" height="42">
+                         <% } else if(firstData["data"][i]["state"]=="台湾"){ %>
+                        <img src="images/cr_cy09.jpg" width="42" height="42">
+                        <% } else if(firstData["data"][i]["state"]=="韩国"){ %>
+                        <img src="images/hg2.png" width="42" height="42">
+                        <% } else if(firstData["data"][i]["state"]=="德国"){ %>
+                        <img src="images/dg.png" width="42" height="42">
+                        <%} else if(firstData["data"][i]["state"]=="法国"){ %>
+                        <img src="images/fg.jpg" width="42" height="42">
+                        <% } else if(firstData["data"][i]["state"]=="西班牙"){ %>
+                        <img src="images/xby.png" width="42" height="42">
+                       <% }else if(firstData["data"][i]["state"]=="新西兰"){ %>
+                        <img src="images/xxl.jpg" width="42" height="42">
+                        <% }else if(firstData["data"][i]["state"]=="意大利"){ %>
+                        <img src="images/ydl2.png" width="42" height="42">
+                        <% }else if(firstData["data"][i]["state"]=="斯洛伐克"){ %>
+                        <img src="images/ydl2.png" width="42" height="42">
+                        <% }else if(firstData["data"][i]["state"]=="希腊"){ %>
+                        <img src="images/xl.png" width="42" height="42">
+                        <% } %>
+                        <div class="ix_desc">
+                            <h2><%=firstData["data"][i]["state"] %> <%=firstData["data"][i]["title"] %> </h2>
+                            <span>前值：<%=firstData["data"][i]["before"] %>  预期：<%=firstData["data"][i]["forecast"] %></span>
+                        </div>
+                        <div class="ix_val" data-imp='<%=firstData["data"][i]["importance"]%>'>
+                           <% if(firstData["data"][i]["importance"]=="高"){ %>
+                                <img src="images/ix_degree2.jpg" width="30" height="24">
+                           <%  } else if(firstData["data"][i]["importance"]=="中"){ %>
+                             <img src="images/ix_degree.jpg" width="30" height="24">
+                            <% }else{ %>
+                                 <img src="images/ix_degree3.jpg" width="30" height="24">
+                            <% } %>
+                            <span>实际值：<%=firstData["data"][i]["reality"] %></span>
+                        </div>
+                        <div class="ix_effect" >
+                        <% if(firstData["data"][i]["effect"]=="||") { %>
+                            <span  style="font-size: 12px;color:#FD9525">影响较小</span>
+                            <%  } %>
+                            <% var index=firstData["data"][i]["effect"].indexOf("|");var ld=firstData["data"][i]["effect"].substring(0,index).replace(/\|/g,"");var lk=firstData["data"][i]["effect"].substring(index).replace(/\|/g,""); %>
+                                <% if(ld!=""&&ld.length!=0){ %>
+                                   <% var ldArray=ld.split(" ");var lkArray=lk.split(" ") %>
+                                    <span  style="font-size: 12px;">
+                                    <em style="color:red"> 利多:
+                                    <% for(var k=0;k<ldArray.length;k++) {%>
+                                      <b data-type="<%=ldArray[k] %>" style="color:red"><%=ldArray[k] %></b>
+                                    <% } %>
+                                    </em>
+                                        <% if(lk!=""&&lk.length!=0) {%>
+                                        <em style="color:green">利空:
+                                        <% for(var k=0;k<lkArray.length;k++) {%>
+                                        <b data-type="<%=lkArray[k] %>" style="color:green"><%=lkArray[k] %></b>
+                                        <%} %>
+                                        </em>
+                                        <% } %>
+                                    </span>
+                                <%} else { %>
+                                        <% var lkArray=lk.split(" ") %>
+                                        <% if(lk!=""&&lk.length!=0) {%>
+                                        <span  style="font-size: 12px;"><em style="color:green">利空:
+                                        <% for(var k=0;k<lkArray.length;k++) {%>
+                                           <% if(lkArray[k]!=""){ %>
+                                          <b style="color:green" data-type="<%=lkArray[k] %>"><%=lkArray[k] %></b>
+                                          <% } %>
+                                        <% } %>
+                                        </em></span>
+                                        <% } %>
+                        <% } %>
+                            </span>
+                        </div>
+                    </div>
+                </dd>
+                 <% } else { %>
+                   <% if(firstData["data"][i]["importance"]=="高") {%>
+                   <dd data-idg="<%=firstData["data"][i]["id"]%>" class="ix_cn_dd" data-id="<%=firstData["kxLastid"]%>" data-time="<%=firstData["data"][i]["time"].substr(0,10) %>">
+                   <% } else { %>
+                   <dd data-idg="<%=firstData["data"][i]["id"]%>" data-id="<%=firstData["data"][i]["autoid"] %>" data-time="<%=firstData["data"][i]["time"].substr(0,10) %>">
+                    <% } %>
+                    <span><%=firstData["data"][i]["time"].substr(10,6) %></span>
+                        <p>
+                        <%-firstData["data"][i]["title"]%></p>
+                </dd>
+                   <% } %>
+              <% } %>
+        </dl>
+        <button class="load_more" onclick="next_page()">点击加载更多... </button>
+    </div>
+	<div class="ix_right">
+         <dl class="ix_goods">
+				<dt>
+                	<a class="ix_gs_br" href="javascript:;" style="width:28%">商品</a>
+                	<a href="javascript:;" style="width:30%">外汇</a>
+                	<a href="javascript:;" style="width:118px;border-right:0">股指</a>
+                </dt>
+                <div class="ix_dd">
+                    <dd>
+                        <%  for(var i=0; i<shangpingData.length; i++) { %>
+                           <div class="ix_sp <%=shangpingData[i]["Code"] %>" data-code="<%=shangpingData[i]["Code"] %>">
+                                <span class="ix_color" title="<%=shangpingData[i]["Name"] %>"> <%=shangpingData[i]["Name"] %></span>
+                                <span class="ix_color1" title="<%=shangpingData[i]["Last"] %>"><%=shangpingData[i]["Last"] %></span>
+                                <% if(shangpingData[i]["Swing"]*1<0){ %>
+                                <span class="gr_ ix_color2" title="<%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %>"><%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %></span>
+                                <% }else{%>
+                                <span class="r_ ix_color2" title="<%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %>"><%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %></span>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </dd>
+                    <dd>
+                         <%  for(var i=0; i<waihuiData.length; i++) { %>
+                           <div class="ix_sp <%=waihuiData[i]["Code"] %>" data-code="<%=waihuiData[i]["Code"] %>">
+                                <span class="ix_color" title="<%=waihuiData[i]["Name"] %>"><%=waihuiData[i]["Name"] %></span>
+                                <span  class="ix_color1" title="<%=waihuiData[i]["Last"] %>"><%=waihuiData[i]["Last"] %></span>
+                                <% if(waihuiData[i]["Swing"]*1<0){ %>
+                                <span class="gr_ ix_color2" title="<%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %>"><%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %></span>
+                                <% }else{%>
+                                <span class="r_ ix_color2"  title="<%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %>"><%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %></span>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </dd>
+                    <dd>
+                        <%  for(var i=0; i<guzhiData.length; i++) { %>
+                           <div class="ix_sp <%=guzhiData[i]["Code"] %>" data-code="<%=guzhiData[i]["Code"] %>">
+                                <span class="ix_color" title="<%=guzhiData[i]["Name"] %>"><%=guzhiData[i]["Name"] %></span>
+                                <span  class="ix_color1" title="<%=guzhiData[i]["Last"] %>"><%=guzhiData[i]["Last"] %></span>
+                                <% if(guzhiData[i]["Swing"]*1<0){ %>
+                                <span class="gr_ ix_color2" title="<%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %>"><%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %></span>
+                                <% }else{%>
+                                <span class="r_ ix_color2" title="<%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %>"><%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %></span>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </dd>
+                </div>
+         </dl>
+         <dl class="ix_strategy">
+         	<dt><span>独家策略</span></dt>
+            <%-ulList%>
+         </dl>
+         <dl class="ix_calendar">
+         	<dt><span>财经日历</span></dt>
+            <% for(var i=0; i<10; i++) {  %>
+                 <dd>
+                      <span><%=caijinData[i]["PredictTime"] %></span>
+                     <a href="javascript:;" style="cursor: default;" title="<%=caijinData[i]["NFI"] %>"><%=caijinData[i]["NFI"] %></a>
+                 </dd>
+            <% } %>
+         </dl>
+         <dl class="ix_link">
+         	<dt><span>友情链接</span></dt>
+            <dd><a href="javascript:;">金十数据官网</a></dd><dd><a href="javascript:;">同城理财</a></dd><dd><a href="javascript:;">网贷论坛</a></dd><dd><a href="javascript:;">白银投资分析</a></dd><dd><a href="javascript:;">卡盟网</a></dd><dd><a>网贷行业资讯</a></dd>
+         </dl>
+    </div>
+</div>
+<hr style="height:1px;background-color:#dcdcdc;margin-bottom:24px;">
+<!--footer-->
+<div class="footer">
+	<ul>
+    	<li><a href="javascript:;">关于我们</a></li>
+    	<li><a href="javascript:;">联系我们</a></li>
+    	<li><a href="javascript:;">免责声明</a></li>
+    	<li><a href="javascript:;">意见反馈</a></li>
+    	<li><a href="javascript:;">网站地图</a></li>
+    </ul>
+    <p>Copyright &copy; 2001-2015 金十数据 DYHJW.com All Rights Reserved | 沪ICP备15014470号- 12 </p>
+    <span class="fr_safe"></span>
+</div>
+<input type="hidden" name="" value=<%=tokenHQ %> id="tokenHQ">
+<script type="text/javascript" src="javascripts/swfobject.js"></script>
+<script type="text/javascript" src="javascripts/web_socket.js"></script>
+<script type="text/javascript">
+ WEB_SOCKET_SWF_LOCATION = "/javascripts/WebSocketMain.swf";
+var code = new Array();
+$(".ix_sp").each(function(){
+    code.push( $(this).attr("data-code") );
+});
+var crypt="<%=tokenHQ %>".replace(/&#34;/g,"");
+var codeStr = code;
+</script>
+<script type="text/javascript" src="javascripts/index.js"></script>
+</body>
+</html>

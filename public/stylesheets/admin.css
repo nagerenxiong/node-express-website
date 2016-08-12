@@ -1,0 +1,41 @@
+html,
+body { height: 100%; }
+.top { height: 32px; color: #fff; background: #23282d; width: 100%; font-size: 12px; line-height: 32px; text-indent: 20px; }
+.wrap { overflow: hidden; height: 100%; }
+.left { color: #fff; background: #23282d; font-size: 14px; width: 160px; float: left; height: 100%; padding-top: 50px; }
+.left a { font-size: 14px; color: #fff; display: block; height: 50px; line-height: 50px; text-indent: 20px; }
+.right { background: #F1F1F1; padding-left: 190px; padding-top: 16px; height: 100%; }
+.right h1 { font-size: 23px; font-weight: 400; margin: 0; padding: 9px 15px 4px 0; line-height: 29px; }
+.right table a { margin-left: 4px; padding: 0px 8px; position: relative; top: -3px; text-decoration: none; border: none; border: 1px solid #ccc; -webkit-border-radius: 2px; border-radius: 2px; background: #f7f7f7; text-shadow: none; font-weight: 600; color: #0073aa; font-size: 13px; }
+.right table a:hover { background-color: #0073aa; color: #fff; }
+.select select { outline: none; border: 1px solid #ddd; width: 115px; height: 32px; vertical-align: middle; }
+.ad_news_list th { text-align: left; }
+.ad_news_list { border: 1px solid #e5e5e5; background-color: #fff; margin-top: 10px; width: 98%;}
+.ad_news_list th { border-bottom: 1px solid #e5e5e5; }
+.ad_news_list .w1 { text-align: center; }
+.ad_news_list tr { height: 50px; }
+.ad_news_list tr a { border: 0; background-color: #fff; }
+.ad_news_list tr a:hover { background-color: #fff; color: #0073aa; }
+#del_btn { height: 30px; width: 100px; line-height: 30px; -webkit-box-shadow: 0 1px 0 #ccc; box-shadow: 0 1px 0 #ccc; color: #555;outline: none;cursor: pointer; }
+#title,
+#content,
+#summary { width: 98%; }
+#title { height: 35px; }
+.title_box,
+.content_box,
+.summary_box { margin-top: 10px; }
+.title_box label,
+.content_box label,
+.summary_box label { font-size: 12px; }
+.title_box input,
+.content_box textarea,
+.summary_box textarea { margin-top: 10px; }
+.cat_box * { font-size: 12px; }
+.cat_box { margin-top: 20px; }
+textarea { resize: none; padding-left: 10px; padding-top: 10px; }
+input { padding-left: 10px; }
+#content_box { height:420px;height: 390px\9;  margin-top: 10px; width: 98%; }
+.submit_box { position: absolute; bottom:20px; text-align: center; left: 50%; }
+.submit_box .submit_btn { background: #0085ba; padding: 5px 20px; border-color: #0073aa #006799 #006799; -webkit-box-shadow: 0 1px 0 #006799; box-shadow: 0 1px 0 #006799; color: #fff; text-decoration: none; text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
+.pagination{    display: inline-block;}
+#edui38{display: none!important;}

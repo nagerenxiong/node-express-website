@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>金十数据_独家策略</title>
+<script src="/javascripts/jquery-1.9.1.min.js"></script>
+<script src="/javascripts/all.js"></script>
+<link rel="stylesheet" href="/stylesheets/reset.css">
+<link rel="stylesheet" href="/stylesheets/desc.css">
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<h1 class="tp_left">
+    	<a href="javascript:;"><img src="/images/logo.png" width="210" height="47"></a>
+    </h1>
+    <div class="tp_right">
+    	<input class="tp_enter" placeholder="请输入关键词">
+        <a class="tp_search" href="javascript:;"></a>
+    </div>
+</div>
+<!--nav-->
+<div class="nav">
+	<ul>
+        <li><a href="/">首页</a></li>
+         <% if(article[0]["catId"]==1) {%>
+        <li class="nv_bg2"><a href="/strategy">独家策略</a></li> 
+        <%}else{%>
+        <li><a href="/strategy">独家策略</a></li> 
+        <%}%>
+         <% if(article[0]["catId"]==2) {%>
+        <li class="nv_bg2"><a href="/infor">财经资讯</a></li>
+         <%}else{%>
+         <li ><a href="/infor">财经资讯</a></li>
+         <%}%>
+        <li ><a href="/calendar">财经日历</a></li>
+        <li><a href="/market">实时行情</a></li>
+    </ul>
+</div>
+<!--info-->
+<div class="info">
+    <div class="io_left">
+		<div class="io_where">
+        	<span>当前位置：</span>
+            <a href="/">首页</a>&nbsp;>&nbsp;
+            <% if(article[0]["catId"]==1) {%>
+            <a href="/strategy">独家策略</a>&nbsp;>&nbsp;
+            <%}else{%>
+            <a href="/infor">财经资讯</a>&nbsp;>&nbsp;
+            <%}%>
+            <span>正文</span>
+        </div>
+        <h2><%=article[0]["title"]%></h2>
+		<dl class="io_content">
+        	<dt>
+            	<span><%=article[0]["time"]%></span>
+            </dt>
+            <dd>
+            	【摘要】<%=article[0]["summary"]%>
+            </dd>
+        </dl>
+        <div class="io_pp">
+        <%-article[0]["content_html"]%>
+        </div>
+    </div>
+    <div class="io_right">
+        <dl class="io_flash" style="overflow:hidden;">
+            <dt>
+                <span>快讯</span>
+                <a href="/">更多>></a>
+            </dt>
+            <div class="io_dd">
+                 <% for (var i = 0; i < newsList.length; i++) {%>
+                    <dd>
+                    <span class="io_time2"><%=newsList[i]["time"].substring(10,16)%></span>
+                    <% if(newsList[i]["importance"]=="高") {%>
+                    <p class="io_column io_cn_color"> <a href="javascript:;" style="cursor: default"><%-newsList[i]["title"] %></a></p>
+                    <%}else{%>
+                    <p class="io_column "> <a href="javascript:;" style="cursor: default"><%-newsList[i]["title"] %></a></p>
+                    <%}%>
+                    </dd>
+               <%} %>
+            </div>
+        </dl>
+        <dl class="io_flash">
+            <dt>
+                <span>行情</span>
+                <a href="/market">更多>></a>
+            </dt>
+            <ul class="io_title">
+            	<li><a class="io_te_check" href="javascript:;">股指</a></li>
+            	<li><a href="javascript:;">贵金属</a></li>
+            	<li><a href="javascript:;">商品</a></li>
+            	<li><a href="javascript:;">外汇</a></li>                 
+            </ul>
+            <div class="io_dl">
+                <dl class="io_list">
+                     <%  for(var i=0; i<guzhiData.length; i++) { %>
+                        <dd data-code="<%=guzhiData[i]["Code"] %>" class="<%=guzhiData[i]["Code"] %>">
+                            <span title="<%=guzhiData[i]["Name"] %>"><%=guzhiData[i]["Name"] %></span>
+                            <span title="<%=guzhiData[i]["Last"] %>"><%=guzhiData[i]["Last"] %></span>
+                            <% if(shangpingData[i]["Swing"]*1<0){ %>
+                            <span class="gr_" style="width:46%" title="<%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %>"><%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %></span>
+                            <% }else{ %>
+                            <span class="r_" style="width:46%" title="<%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %>"><%=guzhiData[i]["Swing"] %> | <%=guzhiData[i]["SwingRange"] %></span>
+                            <% } %>
+                        </dd>
+                    <%}%>
+                </dl>
+                <dl class="io_list">
+                     <%  for(var i=0; i<guijinshuData.length; i++) { %>
+                        <dd data-code="<%=guijinshuData[i]["Code"] %>" class="<%=guijinshuData[i]["Code"] %>">
+                            <span title="<%=guijinshuData[i]["Name"] %>"><%=guijinshuData[i]["Name"] %></span>
+                            <span title="<%=guijinshuData[i]["Last"] %>"><%=guijinshuData[i]["Last"] %></span>
+                             <% if(shangpingData[i]["Swing"]*1<0){ %>
+                            <span class="gr_" style="width:46%" title="<%=guijinshuData[i]["Swing"] %> | <%=guijinshuData[i]["SwingRange"] %>"><%=guijinshuData[i]["Swing"] %> | <%=guijinshuData[i]["SwingRange"] %></span>
+                            <% }else{ %>
+                            <span class="r_" style="width:46%" title="<%=guijinshuData[i]["Swing"] %> | <%=guijinshuData[i]["SwingRange"] %>"><%=guijinshuData[i]["Swing"] %> | <%=guijinshuData[i]["SwingRange"] %></span>
+                            <% } %>
+                        </dd>
+                    <%}%>          
+                </dl>
+                <dl class="io_list">
+                   <%  for(var i=0; i<shangpingData.length; i++) { %>
+                        <dd data-code="<%=shangpingData[i]["Code"] %>" class="<%=shangpingData[i]["Code"] %>">
+                            <span title="<%=shangpingData[i]["Name"] %>"><%=shangpingData[i]["Name"] %></span>
+                            <span title="<%=shangpingData[i]["Last"] %>"><%=shangpingData[i]["Last"] %></span>
+                             <% if(shangpingData[i]["Swing"]*1<0){ %>
+                            <span class="gr_" style="width:46%" title="<%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %>"><%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %></span>
+                            <% }else{ %>
+                            <span class="r_" style="width:46%" title="<%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %>"><%=shangpingData[i]["Swing"] %> | <%=shangpingData[i]["SwingRange"] %></span>
+                            <% } %>
+                        </dd>
+                    <%}%>            
+                </dl>
+                <dl class="io_list">
+                    <%  for(var i=0; i<waihuiData.length; i++) { %>
+                        <dd data-code="<%=waihuiData[i]["Code"] %>" class="<%=waihuiData[i]["Code"] %>">
+                            <span title="<%=waihuiData[i]["Name"] %>"><%=waihuiData[i]["Name"] %></span>
+                            <span title="<%=waihuiData[i]["Last"] %>"><%=waihuiData[i]["Last"] %></span>
+                             <% if(shangpingData[i]["Swing"]*1<0){ %>
+                            <span class="gr_" style="width:46%" title="<%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %>"><%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %></span>
+                            <% }else{ %>
+                            <span class="r_" style="width:46%" title="<%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %>"><%=waihuiData[i]["Swing"] %> | <%=waihuiData[i]["SwingRange"] %></span>
+                            <% } %>
+                        </dd>
+                    <%}%>     
+                </dl>      
+            </div>            
+        </dl>     
+    </div>
+</div>
+<hr style="height:1px;background-color:#dcdcdc;margin-bottom:24px;">
+<!--footer-->
+<div class="footer">
+	<ul>
+    	<li><a href="javascript:;">关于我们</a></li>
+    	<li><a href="javascript:;">联系我们</a></li>
+    	<li><a href="javascript:;">免责声明</a></li>
+    	<li><a href="javascript:;">意见反馈</a></li>
+    	<li><a href="javascript:;">网站地图</a></li>
+    </ul>
+    <p>Copyright &copy; 2001-2015 金十数据 DYHJW.com All Rights Reserved | 沪ICP备15014470号- 12 </p>
+    <span class="fr_safe"></span>
+</div>
+<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts/web_socket.js"></script>
+<script type="text/javascript">
+ WEB_SOCKET_SWF_LOCATION = "/javascripts/WebSocketMain.swf";
+var code = new Array();
+$(".io_list dd").each(function(){
+    code.push( $(this).attr("data-code") );
+});
+var crypt=<%-oldtoken%>;
+var codeStr = code;
+
+ var page=1;
+    $(".io_more").click(function(){
+        page++;
+        $.ajax({
+            url: '/infor/getMore?page='+page,
+            type: 'get',
+            success:function(htmlStr){
+
+                $(".io_left dd").append(htmlStr);
+            }
+        })
+    })
+
+
+
+
+
+
+
+var wsServer = "ws://114.215.194.241:9504";
+    var websocket = new WebSocket(wsServer);
+    websocket.onopen = function(evt) {
+        var msg = {
+            'type': 'client',
+            'code': codeStr,
+            'crypt': crypt
+        };
+
+        var jsonmsg = JSON.stringify(msg);
+        websocket.send(jsonmsg);
+    };
+
+    websocket.onclose = function(evt) {
+        // var data = JSON.parse(evt.data);
+        // console.log(data);
+    };
+
+    websocket.onmessage = function(evt) {
+        try {
+            var data = JSON.parse(evt.data);
+        } catch (error) {
+            layer.close(Loading);
+            return false;
+        }
+        if(typeof(data.ok)!="number")
+        upData(data);
+       
+
+        // layer.close(Loading);
+    };
+
+    websocket.onerror = function(evt, e) {
+    };
+
+
+  
+
+
+function upData(data) {
+    var ele1 = $(" ." + data.code + ' span:eq(1)');
+    var ele2 = $(" ." + data.code + ' span:eq(2)');
+    ele2.removeClass('gr_');
+    ele2.removeClass('r_');
+    var v = getZd(data.last, data.lastClose);
+    var zd = v[0];
+    var zdf = v[1];
+    var n = "";
+    if (zd < 0) {
+        flashColor(ele2, 'green');
+        ele2.addClass('gr_');
+    } else if (zd > 0) {
+        flashColor(ele2, 'red');
+        ele2.addClass('r_');
+        n = "+";
+    }
+    ele1.text(data.last);
+    ele2.text(data.swing+" | "+data.swingRange);
+}
+
+function getZd(p, lc) {
+    p = p.toString();
+    lc = lc.toString();
+    var len1 = p.indexOf(".");
+    if (len1 > -1) {
+        len1 = p.substring(len1 + 1).length;
+    } else {
+        len1 = 0;
+    }
+    var len2 = lc.indexOf(".");
+    if (len2 > -1) {
+        len2 = lc.substring(len2 + 1).length;
+    } else {
+        len2 = 0;
+    }
+    var len = len2;
+    if (len1 >= len2) {
+        len = len1;
+    }
+    var num = Math.pow(10, len);
+    var zd = (p * num - lc * num) / num;
+    zd = zd.toFixed(len);
+
+    var zdf = ((zd * num) / (lc * num)) * 100;
+    zdf = zdf.toFixed(2);
+    var result = [zd, zdf];
+    return result;
+}
+
+
+//更新数据闪亮一下
+function flashColor(ele, color) {
+    if (color == 'red') {
+        ele.addClass('rbcolor');
+        ele.addClass('w_');
+        setTimeout(function() {
+            ele.removeClass('rbcolor');
+            ele.removeClass('w_');
+        }, 500);
+    } else if (color == 'green') {
+        ele.addClass('gbcolor');
+        ele.addClass('w_');
+        setTimeout(function() {
+            ele.removeClass('gbcolor');
+            ele.removeClass('w_');
+        }, 500);
+    }
+}
+
+</script>
+</body>
+</html>

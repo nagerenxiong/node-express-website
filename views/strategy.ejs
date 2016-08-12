@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>金十数据_独家策略</title>
+<script src="javascripts/jquery-1.9.1.min.js"></script>
+<script src="javascripts/all.js"></script>
+<link rel="stylesheet" href="/stylesheets/reset.css">
+<link rel="stylesheet" href="/stylesheets/strategy.css">
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<h1 class="tp_left">
+    	<a href="javascript:;"><img src="images/logo.png" width="210" height="47"></a>
+    </h1>
+    <div class="tp_right">
+    	<input class="tp_enter" placeholder="请输入关键词">
+        <a class="tp_search" href="javascript:;"></a>
+    </div>
+</div>
+<!--nav-->
+<div class="nav">
+	<ul>
+        <li><a href="/">首页</a></li>
+        <li class="nv_bg2"><a href="/strategy">独家策略</a></li>
+        <li ><a href="/infor">财经资讯</a></li>
+        <li><a href="/calendar">财经日历</a></li>
+        <li><a href="/market">实时行情</a></li>
+    </ul>
+</div>
+<!--strategy-->
+<div class="strategy">
+	<dl>
+    	<dt><span class="sy_topic">独家策略</span></dt>
+    	<dd>
+          <ul id="new_box">
+            <li>
+                <a href="http://www.cnoil.com/oil/20160713/o50934.html" target="_blank">
+                    <img src="/images/djcl.jpg"></a>
+                <div class="newsall_right">
+                    <h3>
+                        <a href="http://www.cnoil.com/oil/20160713/o50934.html" target="_blank">API利空油价低开低走 多重利好来袭EIA如何布局?</a>
+                    </h3>
+                    <p>原油从四小时走势图来看，布林带整体向下运行，上、中、下三轨一致向下，K…</p>
+                    <div class="time"> <i>文/超超</i>
+                        <span>2016-07-13 08:27</span>
+                        <a href="http://s.cnoil.com/cse/search?s=14355189524845846563&amp;entry=1&amp;ie=gbk&amp;q=API增加" target="_blank">API增加</a>
+                        <a href="http://s.cnoil.com/cse/search?s=14355189524845846563&amp;entry=1&amp;ie=gbk&amp;q=EIA" target="_blank">EIA</a>
+                    </div>
+                </div>
+            </li>
+          </ul>
+        </dd>
+    </dl>
+</div>
+<!--page-->
+<div class="page">
+    <div class="up_page">
+        <div class="pagination" id="pagination"></div>
+    </div>
+</div>
+<hr style="height:1px;background-color:#dcdcdc;margin-bottom:24px;">
+<!--footer-->
+<div class="footer">
+	<ul>
+    	<li><a href="javascript:;">关于我们</a></li>
+    	<li><a href="javascript:;">联系我们</a></li>
+    	<li><a href="javascript:;">免责声明</a></li>
+    	<li><a href="javascript:;">意见反馈</a></li>
+    	<li><a href="javascript:;">网站地图</a></li>
+    </ul>
+    <p>Copyright &copy; 2001-2015 金十数据 DYHJW.com All Rights Reserved | 沪ICP备15014470号- 12 </p>
+    <span class="fr_safe"></span>
+</div>
+    <script src="/javascripts/laypage/laypage.js"></script>
+    <script type="text/javascript">
+        function page(currentPage){
+        $.getJSON('/strategy/'+currentPage+'/1', {
+        page: currentPage || 1,
+        catId:1
+    }, function(res){
+        console.log(res);
+        //显示分页
+        $("#new_box li").remove();
+        var articleList=res.articleList;
+        for (var i = 0; i < articleList.length; i++) {
+            var htmltr=' <li>\
+                <a href="/desc/'+articleList[i].id+'" target="_blank">'+articleList[i].img.replace(/\%\$\%/g,"\"")+'</a>\
+                <div class="newsall_right">\
+                    <h3>\
+                        <a href="/desc/'+articleList[i].id+'" target="_blank">'+articleList[i].title+'</a>\
+                    </h3>\
+                    <p>'+articleList[i].summary+'</p>\
+                    <div class="time"> <i>文/admin</i>\
+                        <span>'+articleList[i].time+'</span>\
+                    </div>\
+                </div>\
+            </li>';
+            $("#new_box").append(htmltr);
+        }
+        laypage({
+            cont: 'pagination', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+            pages: res.pages, //通过后台拿到的总页数
+            curr: currentPage || 1, //当前页
+            // skip: true, //是否开启跳页
+            skin: '#AF0000',
+            jump: function(obj, first){ //触发分页后的回调
+                if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+                    page(obj.curr);
+                }
+            }
+        });
+    });
+};
+page(1);
+    </script>
+</body>
+</html>

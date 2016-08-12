@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="/stylesheets/reset.css">
+	<link rel="stylesheet" href="/stylesheets/admin.css"></head>
+	<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8" ></script>
+<body>
+	<div class="top">你好,admin <a href="/admin/loginout" style="color:#fff">退出</a></div>
+	<div class="wrap">
+		<div class="left">
+			<a href="/admin">所有文章</a>
+			<a href="/post">写文章</a>
+		</div>
+		<div class="right">
+			<h1>
+				文章列表
+			</h1>
+			<div class="select">
+				<select name="cat" id="cat" class="postform">
+					<option value="0">所有</option>
+					<option class="level-0" value="1">独家策略</option>
+					<option class="level-1" value="2">财经数据</option>
+				</select>
+				<input type="button" name="" value="删除" id="del_btn">
+			</div>
+			<table width="100%" class="ad_news_list">
+				<tr><th style="width:3%" class="w1"> <input type="checkbox" id="checkAll"></th><th style="width:57%;text-indent: 20px">标题</th><th style="width:15%">作者</th><th style="width:15%">分类目录</th><th style="width:10%">日期</th></tr>
+			</table>
+			<div style="text-align:center;padding-top: 20px;">
+				<div class="pagination" id="pagination"></div>
+			</div>
+		</div>
+	</div>
+	<script src="/javascripts/laypage/laypage.js"></script>
+<script>
+function page(currentPage){
+    $.getJSON('/admin/'+currentPage+'/'+$("#cat").val(), {
+        page: currentPage || 1,
+        catId:$("#cat").val()
+    }, function(res){
+        //显示分页
+        $(".ad_news_list tr:gt(0)").remove();
+        var articleList=res.articleList;
+        console.log(articleList);
+        for (var i = 0; i < articleList.length; i++) {
+        	var htmltr='<tr data-id="'+articleList[i].id+'"><td style="width:3%" class="w1"><input type="checkbox"></td><td style="width:57%"><a target="_blank" href="/edit/'+articleList[i].id+'" style="color:#333">编辑</a><a href="/desc/'+articleList[i].id+'" target="_blank">'+articleList[i].title+'</a>\
+        	</td><td style="width:15%">admin</td><td style="width:10%">';
+        	(articleList[i]["catId"]==1)?htmltr+='独家策略':htmltr+='财经数据';
+        	htmltr+='</td><td style="width:10%">'+articleList[i].time+'</td></tr>';
+        	$(".ad_news_list").append(htmltr);
+        }
+        laypage({
+            cont: 'pagination', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+            pages: res.pages, //通过后台拿到的总页数
+            curr: currentPage || 1, //当前页
+            skip: true, //是否开启跳页
+		    skin: '#AF0000',
+            jump: function(obj, first){ //触发分页后的回调
+                if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+                    page(obj.curr);
+                }
+            }
+        });
+    });
+};
+$("#cat").change(function(){
+	page(1,$("#cat").val());
+})
+page(1);
+$("#checkAll").click(function(){
+	 if($(this).prop('checked'))
+	 {
+		$(".ad_news_list tr:gt(0) input[type='checkbox']").prop('checked',true);
+	 }
+	 else
+	 {
+	 	$(".ad_news_list tr:gt(0) input[type='checkbox']").prop('checked',false);
+	 }
+})
+$("#del_btn").click(function(){
+	var arrId="";
+	$(".ad_news_list tr:gt(0)").each(function(index,el){
+		if($(this).children('td').eq(0).children('input').prop('checked'))
+			arrId+=','+$(this).attr('data-id');
+	})
+	arrId=arrId.substring(1);
+	debugger;
+	$.ajax({
+		url: '/admin/delete',
+		type: 'post',
+		data:{idListStr:arrId}
+	})
+	.done(function(msg) {
+		if(msg=="success")
+		{
+			alert("删除成功！");
+			$("#checkAll").prop('checked',false);
+			page(1);
+		}
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+})
+$(document).on('click',".ad_news_list tr:gt(0) input[type='checkbox']",function(){
+	if(!$(this).prop('checked')){
+		$("#checkAll").prop('checked',false);
+	}
+})
+
+</script>
+
+</body>
+</html>

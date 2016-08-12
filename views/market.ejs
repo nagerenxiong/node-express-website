@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>金十数据_实时行情</title>
+    <script src="/javascripts/jquery-1.9.1.min.js"></script>
+    <script src="/javascripts/all.js"></script>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/market.css"></head>
+<body>
+    <!--top-->
+    <div class="top">
+        <h1 class="tp_left">
+            <a href="javascript:;" >
+                <img src="/images/logo.png" width="210" height="47"></a>
+        </h1>
+        <div class="tp_right">
+            <input class="tp_enter" placeholder="请输入关键词">
+            <a class="tp_search" href="javascript:;"></a>
+        </div>
+    </div>
+    <!--nav-->
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/strategy">独家策略</a>
+            </li>
+            <li >
+                <a href="/infor">财经资讯</a>
+            </li>
+            <li>
+                <a href="/calendar">财经日历</a>
+            </li>
+            <li class="nv_bg2">
+                <a href="/market">实时行情</a>
+            </li>
+        </ul>
+    </div>
+    <!--market-->
+    <h1 class="mt_topic">
+        <span>实时行情</span>
+    </h1>
+    <div class="market">
+        <dl class="mt_left">
+            <dt>
+                <a href="/market">主要报价</a>
+            </dt>
+            <div class="mt_dd">
+                <% if(type==2||type==3||type==5||type==6) { %>
+                <dd class="mt_color">
+                    <a href="javascript:void(0);">大宗商品</a>
+                    <div class="float_box">
+                        <a href="/market/jinjiaosuo">金交所</a>
+                        <a href="/market/guojijin">国际金</a>
+                        <a href="/market/wti-oil">WTI原油</a>
+                        <a href="/market/bulunte-oil">布伦特原油</a>
+                    </div>
+                </dd>
+                <%}else{ %>
+                <dd>
+                    <a href="javascript:void(0);">大宗商品</a>
+                    <div class="float_box">
+                        <a href="/market/jinjiaosuo">金交所</a>
+                        <a href="/market/guojijin">国际金</a>
+                        <a href="/market/wti-oil">WTI原油</a>
+                        <a href="/market/bulunte-oil">布伦特原油</a>
+                    </div>
+                </dd>
+                <%} %>
+                <% if(type==7||type==8) {%>
+                <dd class="mt_color">
+                    <a href="javascript:void(0);">外汇报价</a>
+                    <div class="float_box">
+                        <a href="/market/zhipan">直盘</a>
+                        <a href="/market/jiaochapan">交叉盘</a>
+                    </div>
+                </dd>
+                <%} else {%>
+                <dd >
+                    <a href="javascript:void(0);">外汇报价</a>
+                    <div class="float_box">
+                        <a href="/market/zhipan">直盘</a>
+                        <a href="/market/jiaochapan">交叉盘</a>
+                    </div>
+                </dd>
+                <% } %>
+                <% if(type==9) {%>
+                <dd class="mt_color">
+                    <a href="/market/guzhi" >全球股指</a>
+                </dd>
+                <%} else {%>
+                <dd>
+                    <a href="/market/guzhi" >全球股指</a>
+                </dd>
+                <% } %></div>
+        </dl>
+        <div class="mt_dl">
+            <% if(type==1){ %>
+            <dl class="mt_right" id="mian_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==2){ %>
+            <dl class="mt_right" id="jinjiaosuo_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                 <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+                 <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==3){ %>
+            <dl class="mt_right" id="guojijin_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                 <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==5){ %>
+            <dl class="mt_right" id="wti_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==6){ %>
+            <dl class="mt_right" id="bulunte_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                 <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==7){ %>
+            <dl class="mt_right" id="zhipan_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==8){ %>
+            <dl class="mt_right" id="jiaochapan_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } else if(type==9){ %>
+            <dl class="mt_right" id="guzhi_box">
+                <dt>
+                    <span>名称</span>
+                    <span class="mt_bold">最新价</span>
+                    <span class="mt_bold">涨跌</span>
+                    <span class="mt_bold">涨跌幅</span>
+                    <span>开盘价</span>
+                    <span>最高</span>
+                    <span>最低</span>
+                    <span>昨收</span>
+                    <span>更新时间</span>
+                </dt>
+                 <% for (var i = 0; i < initData.length; i++) { %>
+                     <dd class="<%=initData[i]["Code"] %>">
+                        <span title="<%=initData[i]["Name"] %>"><%=initData[i]["Name"] %></span>
+                        <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="last gr_" ><%=initData[i]["Last"] %></span>
+                        <% } else{ %>
+                            <span class="last r_" ><%=initData[i]["Last"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swing gr_" ><%=initData[i]["Swing"] %></span>
+                        <% } else{ %>
+                            <span class="swing r_" ><%=initData[i]["Swing"] %></span>
+                       <% } %>
+                         <% if(initData[i]["Swing"]*1<0){ %>
+                             <span class="swingRange gr_" ><%=initData[i]["SwingRange"] %></span>
+                        <% } else{ %>
+                            <span class="swingRange r_" ><%=initData[i]["SwingRange"] %></span>
+                       <% } %>
+                        <span class="open"><%=initData[i]["Open"] %></span>
+                        <span  class="high"><%=initData[i]["High"] %></span>
+                        <span  class="low"><%=initData[i]["Low"] %></span>
+                        <span  class="lastClose"><%=initData[i]["LastClose"] %></span>
+                        <span  class="quoteTime"><%=initData[i]["QuoteTime"].substr(9) %></span>
+                    </dd>
+                <% } %>
+            </dl>
+            <% } %></div>
+    </div>
+    <hr style="height:1px;background-color:#dcdcdc;margin-bottom:24px;">
+    <!--footer-->
+    <div class="footer">
+        <ul>
+            <li>
+                <a href="javascript:;">关于我们</a>
+            </li>
+            <li>
+                <a href="javascript:;">联系我们</a>
+            </li>
+            <li>
+                <a href="javascript:;">免责声明</a>
+            </li>
+            <li>
+                <a href="javascript:;">意见反馈</a>
+            </li>
+            <li>
+                <a href="javascript:;">网站地图</a>
+            </li>
+        </ul>
+        <p>
+            Copyright &copy; 2001-2015 金十数据 DYHJW.com All Rights Reserved | 沪ICP备15014470号- 12
+        </p>
+        <span class="fr_safe"></span>
+    </div>
+    <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts//web_socket.js"></script>
+    <script type="text/javascript">
+    WEB_SOCKET_SWF_LOCATION = "/javascripts/WebSocketMain.swf";
+var crypt=<%-get_old_token%>;
+var codeStr='<%-codeStr%>'.split(",");
+var type=<%=type%>
+</script>
+    <script type="text/javascript" src="/javascripts/market.js"></script>
+</body>
+</html>

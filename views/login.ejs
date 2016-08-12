@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆页</title>
+	<style type="text/css" media="screen">
+		body, html {
+		    background: #f1f1f1;
+		}
+		.box{
+		    width: 320px;
+		    padding: 8% 0 0;
+		    margin: auto;
+		}
+		.box form{
+		    margin-top: 20px;
+		    margin-left: 0;
+		    padding: 26px 24px 46px;
+		    background: #fff;
+		    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+		    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+		}
+		.box label {
+		    color: #72777c;
+		    font-size: 14px;
+		}
+		.box form .input{
+		    font-size: 24px;
+		    width: 100%;
+		    padding: 3px;
+		    margin: 2px 6px 16px 0;
+		}
+		.forgetmenot label {
+		    font-size: 12px;
+		    line-height: 19px;
+		}
+		.button{
+		    height: 30px;
+		    line-height: 28px;
+		    border: 0;
+		    padding: 0 12px 2px;
+	        box-shadow: 0 1px 0 #006799;
+		    color: #fff;
+		    text-decoration: none;
+	        background: #008ec2;
+		    border-color: #006799;
+		    color: #fff;
+		    text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;
+		}
+	</style>
+	<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8" ></script>
+</head>
+<body>
+<div class="box">
+	<form name="loginform" id="loginform" action="/login/check" method="post">
+	<p>
+		<label for="user_login">用户名或电子邮件地址<br>
+		<input type="text" name="name" id="user_login" class="input" value="admin" size="20"></label>
+	</p>
+	<p>
+		<label for="user_pass">密码<br>
+		<input type="password" name="pass" id="user_pass" class="input" value="" size="20"></label>
+	</p>
+	<p class="submit">
+		<input type="submit" name="wp-submit" id="wp-submit" class="button" value="登录" onclick="return login()">
+	</p>
+</form>
+</div>
+
+<script>
+	function login() {
+		var name=$.trim($("#user_login").val());
+		var pass=$.trim($("#user_pass").val());
+		if(name=="")
+		{
+			alert("请出入用户名");
+			$("#user_login").focus();
+			return false;
+		}
+		else if(pass=="")
+		{
+			alert("请出入密码");
+			$("#user_login").focus();
+			return false;
+		}
+	}
+	var userFag=<%=userFag%>
+	if(!userFag){
+		alert("用户名或密码错误")
+	}
+</script>
+</body>
+</html>
