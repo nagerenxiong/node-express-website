@@ -183,7 +183,6 @@ $(function() {
             //有消息到来时触发
             local.ws.onmessage = function(e) {
                 //local.log(e);
-                debugger;
                 var data = JSON.parse(e.data);
                 console.log(data);
 
